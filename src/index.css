@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 244 245 241;
+  --surface: 255 255 255;
+  --sunken: 236 237 231;
+  --ink: 26 29 25;
+  --muted: 95 101 91;
+  --line: 223 225 216;
+  --accent: 44 90 71;
+  --accent-ink: 255 255 255;
+  --today: 179 38 30;
+  color-scheme: light;
+}
+.dark {
+  --bg: 17 19 17;
+  --surface: 25 28 25;
+  --sunken: 35 39 35;
+  --ink: 229 231 225;
+  --muted: 166 172 159;
+  --line: 44 49 43;
+  --accent: 134 191 162;
+  --accent-ink: 13 26 19;
+  --today: 240 133 124;
+  color-scheme: dark;
+}
+
+@layer base {
+  html { font-family: 'IBM Plex Sans', system-ui, 'Segoe UI', sans-serif; }
+  body { @apply bg-bg text-ink antialiased; }
+  h1, h2, h3, .font-display { font-family: 'Familjen Grotesk', 'Helvetica Neue', Arial, sans-serif; letter-spacing: -0.01em; }
+  input, textarea, select { @apply bg-transparent text-ink; }
+  input[type='date'] { font-variant-numeric: tabular-nums; }
+  button { @apply cursor-pointer; }
+  :focus-visible { outline: 2px solid rgb(var(--accent)); outline-offset: 1px; }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center gap-1.5 rounded-md border border-line bg-surface px-3.5 py-2 text-[13px] font-medium
+      text-ink transition-colors hover:bg-sunken disabled:opacity-50;
+  }
+  .btn-primary { @apply border-accent bg-accent text-accent-ink hover:bg-accent hover:opacity-90; }
+  .btn-danger { @apply text-today hover:bg-sunken; }
+  .field {
+    @apply w-full rounded-md border border-line bg-surface px-2.5 py-2 text-sm placeholder:text-muted/70;
+  }
+  .label { @apply mb-1 block text-[11px] font-semibold uppercase tracking-wider text-muted; }
+}
+
+/* Inline underline-only inputs used under each phase row */
+.inline-field {
+  @apply w-full truncate border-0 border-b border-dashed border-line bg-transparent px-0 py-0.5 text-[13px]
+    placeholder:text-muted/60 hover:border-muted focus:border-accent focus:outline-none;
+}
+
+.tnum { font-variant-numeric: tabular-nums; }
+
+@page { size: A4 landscape; margin: 10mm; }
+@media print {
+  :root, .dark {
+    --bg: 255 255 255; --surface: 255 255 255; --sunken: 244 242 236; --ink: 20 20 20;
+    --muted: 90 90 90; --line: 200 196 186; --accent: 46 94 62; --today: 192 57 43;
+    color-scheme: light;
+  }
+  body { background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .no-print { display: none !important; }
+  .print-visible { overflow: visible !important; }
+  .inline-field { border-bottom-style: solid; }
+}

@@ -1,0 +1,7 @@
+node_modules/
+dist/
+data/
+_local-version/
+backend/.clasp.json
+.clasprc.json
+*.log
