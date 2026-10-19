@@ -4,7 +4,7 @@
   "description": "Woodland Architects — project schedules and Gantt charts.",
   "start_url": "./",
   "scope": "./",
-  "id": "./",
+  "id": "/woodland-gantt/",
   "display": "standalone",
   "orientation": "any",
   "theme_color": "#6b4696",
