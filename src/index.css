@@ -3,26 +3,26 @@
 @tailwind utilities;
 
 :root {
-  --bg: 244 245 241;
+  --bg: 246 244 249;
   --surface: 255 255 255;
-  --sunken: 236 237 231;
-  --ink: 26 29 25;
-  --muted: 95 101 91;
-  --line: 223 225 216;
-  --accent: 44 90 71;
+  --sunken: 238 234 244;
+  --ink: 28 25 33;
+  --muted: 104 97 116;
+  --line: 224 219 232;
+  --accent: 107 70 150;
   --accent-ink: 255 255 255;
   --today: 179 38 30;
   color-scheme: light;
 }
 .dark {
-  --bg: 17 19 17;
-  --surface: 25 28 25;
-  --sunken: 35 39 35;
-  --ink: 229 231 225;
-  --muted: 166 172 159;
-  --line: 44 49 43;
-  --accent: 134 191 162;
-  --accent-ink: 13 26 19;
+  --bg: 17 15 21;
+  --surface: 26 23 32;
+  --sunken: 37 33 45;
+  --ink: 232 229 238;
+  --muted: 170 163 182;
+  --line: 50 45 60;
+  --accent: 190 160 228;
+  --accent-ink: 22 14 34;
   --today: 240 133 124;
   color-scheme: dark;
 }

@@ -6,15 +6,16 @@ const { chromium } = require(path.join(__dirname, '..', '..', 'project-os-app', 
 ;(async () => {
   const out = path.resolve(process.argv[2])
   const letter = process.argv[3] || 'W'
+  const color = process.argv[4] || '#2c5a47'
   fs.mkdirSync(out, { recursive: true })
   const browser = await chromium.launch()
   const page = await browser.newPage()
   for (const [name, size, scale] of [['icon-192.png', 192, 0.62], ['icon-512.png', 512, 0.62], ['maskable-512.png', 512, 0.46]]) {
-    const b64 = await page.evaluate(([size, scale, letter]) => {
+    const b64 = await page.evaluate(([size, scale, letter, color]) => {
       const c = document.createElement('canvas')
       c.width = c.height = size
       const x = c.getContext('2d')
-      x.fillStyle = '#2c5a47'
+      x.fillStyle = color
       x.fillRect(0, 0, size, size)
       x.fillStyle = '#ffffff'
       x.textAlign = 'center'
@@ -24,7 +25,7 @@ const { chromium } = require(path.join(__dirname, '..', '..', 'project-os-app', 
       const h = m.actualBoundingBoxAscent + m.actualBoundingBoxDescent
       x.fillText(letter, size / 2, size / 2 + h / 2 - m.actualBoundingBoxDescent)
       return c.toDataURL('image/png').split(',')[1]
-    }, [size, scale, letter])
+    }, [size, scale, letter, color])
     fs.writeFileSync(path.join(out, name), Buffer.from(b64, 'base64'))
   }
   await browser.close()
